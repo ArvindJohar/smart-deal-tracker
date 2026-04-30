@@ -27,7 +27,7 @@ h2 {
   text-align: center;
 }
 
-/* Inputs */
+/* Inputs (auth pages only) */
 input {
   width: 100%;
   padding: 10px;
@@ -41,7 +41,7 @@ input:focus {
   border-color: #007bff;
 }
 
-/* Form buttons only (Login/Register/Add) */
+/* Deal form buttons */
 .container > button {
   width: 100%;
   padding: 10px;
@@ -57,7 +57,7 @@ input:focus {
   background-color: #0056b3;
 }
 
-/* Deal cards */
+/* Deal card */
 .deal {
   border: 1px solid #ddd;
   padding: 12px;
@@ -67,16 +67,16 @@ input:focus {
   transition: 0.2s;
 }
 
+.deal:hover {
+  transform: scale(1.02);
+}
+
 .deal h4 {
   margin-bottom: 5px;
 }
 
 .deal p {
   font-size: 14px;
-}
-
-.deal:hover {
-  transform: scale(1.02);
 }
 
 /* Discount */
@@ -91,27 +91,28 @@ a {
   text-decoration: none;
 }
 
-/* Header layout */
+/* Header */
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 12px;
   margin-bottom: 20px;
 }
 
 .header h2 {
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 /* Header actions */
 .header-actions {
   display: flex;
   gap: 10px;
+  justify-content: center;
   align-items: center;
 }
 
-/* Buttons (shared style) */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -123,7 +124,6 @@ a {
 
   border-radius: 6px;
   font-size: 14px;
-  text-decoration: none;
   border: none;
   cursor: pointer;
   font-weight: 500;
@@ -131,7 +131,7 @@ a {
   transition: all 0.2s ease;
 }
 
-/* Primary (Add Deal) */
+/* Primary */
 .btn.primary {
   background-color: #007bff;
   color: white;
@@ -141,17 +141,17 @@ a {
   background-color: #0056b3;
 }
 
-/* Secondary (Dashboard) */
+/* Secondary */
 .btn.secondary {
-  background-color: #e9ecef;
-  color: #333;
+  background: linear-gradient(135deg, #6c63ff, #5a54e6);
+  color: white;
 }
 
 .btn.secondary:hover {
-  background-color: #d6d8db;
+  background: linear-gradient(135deg, #5a54e6, #4a45c9);
 }
 
-/* Danger (Logout) */
+/* Danger */
 .btn.danger {
   background-color: #dc3545;
   color: white;
@@ -161,6 +161,11 @@ a {
   background-color: #a71d2a;
 }
 
+/* Button click effect */
+.btn:active {
+  transform: scale(0.96);
+}
+
 /* Empty state */
 .empty {
   text-align: center;
@@ -168,7 +173,7 @@ a {
   margin-top: 20px;
 }
 
-/* Analytics cards */
+/* Analytics */
 .analytics {
   display: flex;
   gap: 10px;
@@ -177,27 +182,14 @@ a {
 
 .card {
   flex: 1;
-  background: #ffffff;
+  background: #fff;
   padding: 15px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-.card p {
-  font-size: 14px;
-  color: #555;
-}
-
-.card h3 {
-  margin-top: 5px;
-}
-
-/* Button click effect */
-.btn:active {
-  transform: scale(0.96);
-}
-
+/* Auth links */
 .auth-switch {
   text-align: center;
   margin-top: 12px;
@@ -213,23 +205,46 @@ a {
   text-decoration: underline;
 }
 
+/* Center link */
 .center-link {
   display: flex;
   justify-content: center;
   margin-bottom: 15px;
 }
 
-.btn.secondary {
-  background: linear-gradient(135deg, #6c63ff, #5a54e6);
-  color: white;
-}
-
-.btn.secondary:hover {
-  background: linear-gradient(135deg, #5a54e6, #4a45c9);
-}
-
+/* Back button bar */
 .top-bar {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 15px;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.filters input {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  padding: 8px 12px;
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  font-size: 14px;
+  outline: none;
+}
+
+.filters input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.filters input::placeholder {
+  color: #999;
 }

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 function Deals() {
     const [deals, setDeals] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [platform, setPlatform] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -14,7 +16,12 @@ function Deals() {
     useEffect(() => {
         const fetchDeals = async () => {
             try {
-                const { data } = await API.get('/deals');
+                const params = {};
+
+                if (platform) params.platform = platform;
+                if (maxPrice) params.maxPrice = maxPrice;
+
+                const { data } = await API.get('/deals', { params });
                 setDeals(data);
             } catch (err) {
                 alert('Failed to fetch deals');
@@ -24,7 +31,7 @@ function Deals() {
         };
 
         fetchDeals();
-    }, []);
+    }, [platform, maxPrice]);
 
     if (loading) return <p>Loading...</p>;
 
@@ -36,6 +43,20 @@ function Deals() {
                 </Link>
             </div>
             <div className="header">
+                <div className="filters">
+                    <input
+                        placeholder="Platform (Amazon, Flipkart)"
+                        value={platform}
+                        onChange={(e) => setPlatform(e.target.value)}
+                    />
+
+                    <input
+                        placeholder="Max Price"
+                        type="number"
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                    />
+                </div>
                 <h2>Your Deals</h2>
 
                 <div className="header-actions">

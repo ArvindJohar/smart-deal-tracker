@@ -9,26 +9,23 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [analyticsRes, topDealsRes] = await Promise.all([
-                    API.get('/deals/analytics'),
-                    API.get('/deals/top')
-                ]);
-
+                const analyticsRes = await API.get('/deals/analytics');
                 setAnalytics(analyticsRes.data);
+
+                const topDealsRes = await API.get('/deals/top');
                 setTopDeals(topDealsRes.data);
 
             } catch (err) {
-                console.log("FULL ERROR:", err);
-                console.log("RESPONSE:", err.response);
-                console.log("DATA:", err.response?.data);
-                alert(err.response?.data?.message || 'Failed to load dashboard');
+                console.log(err);
+                setAnalytics({ totalDeals: 0, totalSavings: 0, avgDiscount: 0 });
+                setTopDeals([]);
             }
         };
 
         fetchData();
     }, []);
 
-    if (!analytics) return <p>Loading...</p>;
+    if (!analytics) return <p>Loading dashboard...</p>;
 
     return (
         <div className="container">

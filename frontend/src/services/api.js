@@ -1,15 +1,19 @@
 import axios from 'axios';
 
+// 1. Create axios instance
 const API = axios.create({
     baseURL: 'http://localhost:5000/api'
 });
 
-// attach token automatically
+// 2. THIS PART AUTO-ADDS TOKEN TO EVERY REQUEST
 API.interceptors.request.use((req) => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    console.log("TOKEN ATTACHED REQUEST:", req.url);
 
-    if (user?.token) {
-        req.headers.Authorization = `Bearer ${user.token}`;
+    const user = localStorage.getItem('user');
+
+    if (user) {
+        const token = JSON.parse(user).token;
+        req.headers.Authorization = `Bearer ${token}`;
     }
 
     return req;

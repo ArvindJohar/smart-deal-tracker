@@ -114,6 +114,7 @@ const deleteDeal = async (req, res) => {
 
 const getAnalytics = async (req, res) => {
     try {
+        console.log("USER:", req.user);
         const deals = await Deal.find({ user: req.user._id });
 
         if (deals.length === 0) {
